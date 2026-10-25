@@ -3,7 +3,7 @@
 -- =====================================================================
 -- HOW TO RUN:
 --   1. Go to https://supabase.com/dashboard
---   2. Open your Supabase project (vlwdxlwmljigbxncxqdm)
+--   2. Open your Supabase project
 --   3. Click: SQL Editor → New Query
 --   4. Paste this ENTIRE script and click "RUN"
 -- =====================================================================

@@ -553,7 +553,7 @@ Core Platform Pillars & Capabilities:
                 if (isTelugu) {
                     verdict = 'సుపాబేస్ క్లౌడ్ డేటాబేస్ ఇంటిగ్రేషన్ (Supabase Cloud Sync)';
                     summary = `ThreatStorm వెబ్‌సైట్ సుపాబేస్ క్లౌడ్ డేటాబేస్‌తో అనుసంధానించబడి ఉంటుంది:
-- ప్రాజెక్ట్ URL: https://vlwdxlwmljigbxncxqdm.supabase.co
+- ప్రాజెక్ట్ URL: ${process.env.SUPABASE_URL || 'Configured in .env'}
 - Settings లో మీ Supabase Anon Key ని కాన్ఫిగర్ చేసుకోవచ్చు.
 - 'supabase_schema.sql' మరియు 'supabase_quick_response.sql' స్క్రిప్ట్‌లు మీ సుపాబేస్‌లో టేబుల్స్ మరియు రియల్‌టైమ్ ఛానెల్స్‌ను క్రియేట్ చేస్తాయి.
 - 'Push Threats to Cloud' ద్వారా సైబర్ ఈవెంట్స్ మరియు క్విక్ రెస్పాన్స్ రిపోర్ట్స్ క్లౌడ్‌లో సురక్షితంగా సేవ్ అవుతాయి.`;
