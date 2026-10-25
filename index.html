@@ -1645,19 +1645,27 @@
                                 <span class="ev-badge-chip ev-chip--gold" id="radar-sweep-status">SWEEPER ACTIVE</span>
                             </div>
 
-                            <!-- Radar Screen Visualizer -->
+                            <!-- Realistic Tactical Radar Screen Visualizer -->
                             <div class="scanner-radar-wrapper" id="scanner-radar-wrapper">
-                                <div class="scanner-radar-screen">
-                                    <div class="radar-ring radar-ring-1"></div>
-                                    <div class="radar-ring radar-ring-2"></div>
-                                    <div class="radar-ring radar-ring-3"></div>
-                                    <div class="radar-crosshair-h"></div>
-                                    <div class="radar-crosshair-v"></div>
-                                    <div class="radar-sweep-beam"></div>
-                                    <div class="radar-target-blip" id="radar-blip" style="top: 35%; left: 65%;"></div>
+                                <!-- Top Tactical HUD Bar -->
+                                <div class="radar-hud-bar radar-hud-bar--top">
+                                    <span class="radar-hud-tag"><span class="radar-hud-dot"></span>SYS: PULSE-DOPPLER 3D</span>
+                                    <span class="radar-hud-tag" id="radar-live-az" style="color: #38bdf8; font-weight: 700;">AZ: 000.0°</span>
+                                    <span class="radar-hud-tag">FREQ: 14.8 GHz</span>
                                 </div>
-                                <div style="margin-top: 14px; font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); text-align: center;">
-                                    PLANETARY SENSOR SWEEP // FREQUENCY: 14.8 GHz // PROTOCOL: SYN PROBE
+
+                                <!-- Realistic Radar Canvas Container -->
+                                <div class="realistic-radar-container">
+                                    <canvas id="realistic-radar-canvas" width="310" height="310"></canvas>
+                                    <!-- Backwards compatible hidden anchor for legacy blip hooks -->
+                                    <div id="radar-blip" style="display:none;"></div>
+                                </div>
+
+                                <!-- Bottom Tactical HUD Bar -->
+                                <div class="radar-hud-bar radar-hud-bar--bottom">
+                                    <span class="radar-hud-sub" id="radar-live-mode" style="color: #38bdf8;">TWS // AUTO-ACQUIRE</span>
+                                    <span class="radar-hud-sub" id="radar-live-targets">4 TARGETS TRACKED</span>
+                                    <span class="radar-hud-sub">RANGE: 100 KM</span>
                                 </div>
                             </div>
 
@@ -2581,6 +2589,7 @@
     <script src="/env.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="threats.js"></script>
+    <script src="realistic-radar.js"></script>
     <script src="supabaseClient.js"></script>
     <script src="app.js"></script>
     <script src="evidence-chain.js"></script>

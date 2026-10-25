@@ -2341,6 +2341,11 @@
             // Switch to dedicated URL scanner view so user sees live telemetry
             switchAppView('url-scanner');
 
+            // Trigger realistic radar tactical sweep acceleration
+            if (window.RealisticRadar) {
+                window.RealisticRadar.setScanning(true);
+            }
+
             // Update UI to Scanning State
             if (btnDeepScan) {
                 btnDeepScan.disabled = true;
@@ -2444,6 +2449,16 @@
 
             // Render Results to UI
             renderScanResults(scanResult);
+
+            // Update realistic radar target lock-on
+            if (window.RealisticRadar) {
+                window.RealisticRadar.setScanning(false);
+                window.RealisticRadar.setPrimaryTarget(
+                    scanResult.hostname || scanResult.targetUrl,
+                    scanResult.resolvedIp,
+                    scanResult.riskScore
+                );
+            }
 
             // Reset buttons
             isScanning = false;
