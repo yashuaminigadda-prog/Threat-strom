@@ -544,45 +544,94 @@
 
                 </section>
 
-                <!-- ═══ Quick Real-Time URL Threat Scanner Banner ═══ -->
+                <!-- ═══ Quick Real-Time URL Threat Scanner Banner (Haute Cyber HUD) ═══ -->
                 <div class="quick-url-scanner-card" id="quick-url-scanner-card">
+                    <!-- High-Tech Corner Targeting Reticles -->
+                    <span class="hud-corner-bracket hud-corner--tl" aria-hidden="true"></span>
+                    <span class="hud-corner-bracket hud-corner--tr" aria-hidden="true"></span>
+                    <span class="hud-corner-bracket hud-corner--bl" aria-hidden="true"></span>
+                    <span class="hud-corner-bracket hud-corner--br" aria-hidden="true"></span>
+                    <div class="scanner-cyber-scanline" aria-hidden="true"></div>
+
                     <div class="quick-scanner-header">
                         <div class="quick-scanner-title-box">
-                            <div class="quick-scanner-icon">⚡</div>
-                            <div>
-                                <span class="quick-scanner-title">Live Website Threat &amp; URL Reputation Scanner</span>
-                                <span class="quick-scanner-sub">DNS A/AAAA • TLS 1.3 • Phishing Heuristics • Real-Time Intercept</span>
+                            <div class="quick-scanner-icon">
+                                <span class="scanner-icon-aura"></span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                </svg>
+                            </div>
+                            <div class="quick-scanner-title-group">
+                                <div class="quick-scanner-headline-row">
+                                    <span class="quick-scanner-title">LIVE THREAT &amp; REPUTATION RADAR</span>
+                                    <div class="hud-sensor-beacon" title="Global Threat Intelligence Grid Active">
+                                        <span class="hud-pulse-ring"></span>
+                                        <span class="hud-pulse-core"></span>
+                                        <span class="hud-beacon-text">ACTIVE INTERCEPT • 94 FEEDS</span>
+                                    </div>
+                                </div>
+                                <div class="quick-scanner-sub">
+                                    <span class="scanner-sub-badge">DNS A/AAAA</span>
+                                    <span class="scanner-sub-badge">TLS 1.3 FINGERPRINT</span>
+                                    <span class="scanner-sub-badge">PHISH HEURISTICS</span>
+                                    <span class="scanner-sub-badge">AUTONOMOUS C2 SINKHOLE</span>
+                                </div>
                             </div>
                         </div>
-                        <button type="button" class="tab-pill" id="btn-open-full-scanner" style="font-size: 11px; padding: 4px 10px;">
+                        <button type="button" class="tab-pill scanner-deep-station-btn" id="btn-open-full-scanner">
+                            <span class="station-btn-glow"></span>
+                            <span class="station-btn-icon">📡</span>
                             <span>Launch Deep Radar Station ↗</span>
                         </button>
                     </div>
 
                     <div class="quick-scanner-input-row">
                         <div class="quick-scanner-input-wrapper">
-                            <span class="quick-scanner-protocol-tag">TARGET</span>
-                            <input type="text" id="quick-scanner-input" class="quick-scanner-input" placeholder="Enter any website URL or domain (e.g. evil-phish-bank.xyz, google.com, or raw IP)...">
+                            <div class="quick-scanner-protocol-tag">
+                                <span class="tag-reticle">⌖</span>
+                                <span>TARGET</span>
+                            </div>
+                            <input type="text" id="quick-scanner-input" class="quick-scanner-input" placeholder="Enter target domain, IP, or phishing URL (e.g. evil-phish-bank.xyz, google.com)..." autocomplete="off" spellcheck="false">
+                            <kbd class="quick-scanner-kbd-hint">↵ ENTER</kbd>
                         </div>
-                        <button type="button" id="btn-quick-scan-submit" class="quick-scanner-btn">
-                            <span>⚡ SCAN LIVE</span>
+                        <button type="button" id="btn-quick-scan-submit" class="quick-scanner-btn" title="Execute Live Intercept Scan">
+                            <span class="btn-shimmer-sweep"></span>
+                            <svg class="btn-scan-bolt" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                            </svg>
+                            <span>SCAN LIVE</span>
                         </button>
                     </div>
 
                     <!-- Sample Quick Chips -->
                     <div class="quick-scanner-chips">
-                        <span class="chip-label">QUICK SAMPLES:</span>
-                        <button type="button" class="sample-chip sample-chip--malicious" data-url="https://evil-phish-bank.xyz/login">
-                            <span>🔴 evil-phish-bank.xyz (Phishing)</span>
+                        <div class="chip-label">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path>
+                                <path d="M2 12h20"></path>
+                            </svg>
+                            <span>IOC TELEMETRY PRESETS:</span>
+                        </div>
+                        <button type="button" class="sample-chip sample-chip--malicious" data-url="https://evil-phish-bank.xyz/login" title="Test High-Risk Phishing Heuristic">
+                            <span class="chip-pulsar chip-pulsar--danger"></span>
+                            <span class="chip-domain">evil-phish-bank.xyz</span>
+                            <span class="chip-classification">PHISHING</span>
                         </button>
-                        <button type="button" class="sample-chip sample-chip--malicious" data-url="http://update-win-payload.cc/beacon.exe">
-                            <span>🔴 update-win-payload.cc (C2 Malware)</span>
+                        <button type="button" class="sample-chip sample-chip--malicious" data-url="http://update-win-payload.cc/beacon.exe" title="Test APT C2 Payload Dropper">
+                            <span class="chip-pulsar chip-pulsar--danger"></span>
+                            <span class="chip-domain">update-win-payload.cc</span>
+                            <span class="chip-classification">C2 MALWARE</span>
                         </button>
-                        <button type="button" class="sample-chip sample-chip--safe" data-url="https://github.com">
-                            <span>🟢 github.com (Safe)</span>
+                        <button type="button" class="sample-chip sample-chip--safe" data-url="https://github.com" title="Test Verified Enterprise Authority Domain">
+                            <span class="chip-pulsar chip-pulsar--safe"></span>
+                            <span class="chip-domain">github.com</span>
+                            <span class="chip-classification">SECURE</span>
                         </button>
-                        <button type="button" class="sample-chip sample-chip--safe" data-url="https://google.com">
-                            <span>🟢 google.com (Safe)</span>
+                        <button type="button" class="sample-chip sample-chip--safe" data-url="https://google.com" title="Test Verified Authority Domain">
+                            <span class="chip-pulsar chip-pulsar--safe"></span>
+                            <span class="chip-domain">google.com</span>
+                            <span class="chip-classification">SECURE</span>
                         </button>
                     </div>
                 </div>
