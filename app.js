@@ -1874,6 +1874,17 @@
         const navAdminBadge = document.getElementById('nav-admin-badge');
         const adminStrip = document.getElementById('admin-welcome-strip');
         const adminStripUser = document.getElementById('admin-strip-user');
+        const navLoginSuccessPill = document.getElementById('nav-login-success-pill');
+        const authTopBanner = document.getElementById('auth-top-alert-banner');
+        const authBannerName = document.getElementById('auth-banner-name');
+        const authBannerBadge = document.getElementById('auth-banner-badge');
+        const btnAuthBannerClose = document.getElementById('btn-auth-banner-close');
+
+        if (btnAuthBannerClose && authTopBanner) {
+            btnAuthBannerClose.addEventListener('click', () => {
+                authTopBanner.style.display = 'none';
+            });
+        }
 
         function updateAuthUI() {
             if (!window.ThreatStormSupabase) return;
@@ -1882,6 +1893,8 @@
             if (currentUser) {
                 if (btnOpenAuth) btnOpenAuth.style.display = 'none';
                 if (profileBadge) profileBadge.style.display = 'inline-flex';
+                if (navLoginSuccessPill) navLoginSuccessPill.style.display = 'inline-flex';
+                if (authTopBanner) authTopBanner.style.display = 'flex';
 
                 const name = currentUser.callsign || currentUser.email || 'Analyst';
                 const initials = name.split(' ').map(n => n[0]).slice(0, 2).join('').toUpperCase() || 'YK';
@@ -1891,18 +1904,23 @@
                 if (navClearance) navClearance.textContent = currentUser.clearance || 'SECRET // LEVEL 3';
                 if (dropdownEmail) dropdownEmail.textContent = currentUser.email || 'analyst@threatstorm.defense';
                 if (dropdownRole) dropdownRole.textContent = currentUser.role || 'SOC Cyber Analyst';
+                if (authBannerName) authBannerName.textContent = name;
 
                 if (currentUser.isAdmin) {
                     if (navAdminBadge) navAdminBadge.style.display = 'inline-flex';
                     if (adminStrip) adminStrip.style.display = 'flex';
                     if (adminStripUser) adminStripUser.textContent = `${name} (${currentUser.email}) • Level 5 Global Commander`;
+                    if (authBannerBadge) authBannerBadge.textContent = '👑 LEVEL 5 GLOBAL SOC ADMIN';
                 } else {
                     if (navAdminBadge) navAdminBadge.style.display = 'none';
                     if (adminStrip) adminStrip.style.display = 'none';
+                    if (authBannerBadge) authBannerBadge.textContent = currentUser.clearance || 'LEVEL 3 ANALYST';
                 }
             } else {
                 if (btnOpenAuth) btnOpenAuth.style.display = 'inline-flex';
                 if (profileBadge) profileBadge.style.display = 'none';
+                if (navLoginSuccessPill) navLoginSuccessPill.style.display = 'none';
+                if (authTopBanner) authTopBanner.style.display = 'none';
                 if (navAdminBadge) navAdminBadge.style.display = 'none';
                 if (adminStrip) adminStrip.style.display = 'none';
                 if (dropdown) dropdown.classList.remove('is-open');

@@ -277,6 +277,12 @@
                             <span>Sign In</span>
                         </button>
 
+                        <!-- Logged In Status Pill -->
+                        <div class="nav-login-success-pill" id="nav-login-success-pill" style="display: none;">
+                            <span class="login-dot-pulse"></span>
+                            <span>✓ SUCCESSFULLY LOGGED IN</span>
+                        </div>
+
                         <!-- Logged In State: User Callsign Badge & Menu -->
                         <div class="user-profile-badge" id="user-profile-badge" style="display: none;">
                             <div class="user-avatar" id="nav-user-avatar" title="Authenticated Analyst">
@@ -333,8 +339,21 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </header>
+
+            <!-- Top Notification / Status Banner (When Logged In) -->
+            <div class="auth-top-alert-banner" id="auth-top-alert-banner" style="display: none;">
+                <div class="auth-banner-left">
+                    <span class="auth-banner-dot"></span>
+                    <span class="auth-banner-tag">AUTHENTICATED</span>
+                    <span class="auth-banner-msg">✓ SUCCESSFULLY LOGGED IN:</span>
+                    <strong class="auth-banner-name" id="auth-banner-name">Commander Yaswanth</strong>
+                </div>
+                <div class="auth-banner-right">
+                    <span class="auth-banner-badge" id="auth-banner-badge">👑 LEVEL 5 GLOBAL SOC ADMIN</span>
+                    <button type="button" class="auth-banner-close" id="btn-auth-banner-close" aria-label="Close notification">✕</button>
+                </div>
+            </div>
 
             <!-- ═══ Scrollable Dashboard Content ═══ -->
             <main class="dashboard-content" id="main-content">
