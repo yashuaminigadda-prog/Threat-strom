@@ -2028,6 +2028,18 @@
             });
         }
 
+        // Enter key submission for modal inputs
+        [inputEmail, inputPassword, inputCallsign].forEach(input => {
+            if (input) {
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (btnSubmit) btnSubmit.click();
+                    }
+                });
+            }
+        });
+
         // Modal Instant Demo Login
         if (btnDemo) {
             btnDemo.addEventListener('click', () => {
@@ -2139,6 +2151,18 @@
                 }
             });
         }
+
+        // Enter key submission for portal inputs
+        [portalInputEmail, portalInputPass, portalInputCallsign].forEach(input => {
+            if (input) {
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        if (portalBtnSubmit) portalBtnSubmit.click();
+                    }
+                });
+            }
+        });
 
         if (portalBtnDemo) {
             portalBtnDemo.addEventListener('click', () => {
