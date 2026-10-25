@@ -90,6 +90,17 @@
                 }
             ];
 
+            this.isVisible = true;
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    this.isVisible = entries[0].isIntersecting;
+                }, { threshold: 0.05 });
+                observer.observe(this.canvas);
+            }
+            document.addEventListener('visibilitychange', () => {
+                this.isVisible = !document.hidden;
+            }, { passive: true });
+
             this.initCanvas();
             this.bindEvents();
             this.animate = this.animate.bind(this);
@@ -169,8 +180,10 @@
         }
 
         animate() {
-            this.update();
-            this.draw();
+            if (this.isVisible) {
+                this.update();
+                this.draw();
+            }
             requestAnimationFrame(this.animate);
         }
 
@@ -352,12 +365,12 @@
             ctx.save();
             ctx.strokeStyle = 'rgba(0, 0, 0, 0.22)';
             ctx.lineWidth = 1;
+            ctx.beginPath();
             for (let y = cy - r; y <= cy + r; y += 3) {
-                ctx.beginPath();
                 ctx.moveTo(cx - r, y);
                 ctx.lineTo(cx + r, y);
-                ctx.stroke();
             }
+            ctx.stroke();
             ctx.restore();
         }
 

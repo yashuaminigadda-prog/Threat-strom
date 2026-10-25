@@ -67,6 +67,8 @@
 
 html {
     scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -80,16 +82,72 @@ body.dashboard-body {
     line-height: 1.5;
     min-height: 100vh;
     overflow-x: hidden;
+    overscroll-behavior-y: contain;
 }
 
-/* GPU Compositing for Silky 60/120fps Rendering */
-canvas {
+/* ═══════════════════════════════════════════════════════════════
+   ULTRA-SMOOTH HARDWARE-ACCELERATED GPU COMPOSITING (60/120 FPS)
+   ═══════════════════════════════════════════════════════════════ */
+canvas,
+.card,
+.feed-threat-card,
+.sector-card,
+.report-card,
+.top-nav,
+.sidebar,
+.ev-glass-panel,
+.radar-wrapper,
+.omni-modal,
+.cyber-ai-drawer {
     transform: translateZ(0);
     backface-visibility: hidden;
+    perspective: 1000px;
 }
 
-.card {
-    transform: translateZ(0);
+/* Smooth in-page anchor navigation margin */
+section,
+[id^="view-"],
+#hero-section,
+#middle-dashboard,
+#recent-threats-section,
+#evidence-chain {
+    scroll-margin-top: 80px;
+}
+
+/* Silky view entrance transition */
+@keyframes viewSmoothEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) scale(0.996);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.view-smooth-enter {
+    animation: viewSmoothEntrance 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
+}
+
+/* Silky Smooth Cyber Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(4, 7, 15, 0.85);
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(56, 189, 248, 0.28);
+    border-radius: 9999px;
+    border: 1px solid rgba(56, 189, 248, 0.15);
+    transition: background 0.22s ease, box-shadow 0.22s ease;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(56, 189, 248, 0.65);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.5);
 }
 
 /* ═══════════════════════════════════════════════════════════════

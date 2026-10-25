@@ -1095,29 +1095,32 @@
             const el = document.getElementById(id);
             if (el) {
                 el.style.display = 'none';
+                el.classList.remove('view-smooth-enter');
                 if (id === 'evidence-chain') {
                     el.classList.remove('ev-view--active');
                 }
             }
         });
 
-        // Show requested view sections
+        // Show requested view sections with silky smooth entrance
         if (viewName === 'evidence-chain') {
             const evEl = document.getElementById('evidence-chain');
             if (evEl) {
                 evEl.style.display = '';
                 evEl.classList.add('ev-view--active');
+                evEl.classList.add('view-smooth-enter');
             }
-            window.scrollTo({ top: 0, behavior: 'instant' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         } else {
             const targetIds = VIEW_SECTIONS[viewName] || VIEW_SECTIONS.planetary;
             targetIds.forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
                     el.style.display = (id === 'view-auth' || id.startsWith('view-')) ? 'block' : '';
+                    el.classList.add('view-smooth-enter');
                 }
             });
-            window.scrollTo({ top: 0, behavior: 'instant' });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         // Synchronize Top Tab Pills
