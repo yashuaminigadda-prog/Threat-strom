@@ -223,6 +223,42 @@
         }
     }
 
+    // Dispatch Quick Incident Response to Supabase
+    async function dispatchQuickResponseToCloud(qrData) {
+        const client = getClient();
+        if (!client) return { success: false, message: 'Supabase client is not connected.' };
+
+        try {
+            const user = getCurrentUser();
+            const payload = {
+                id: qrData.id || ('QR-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000)),
+                severity: qrData.severity || 'CRITICAL',
+                target_asset: qrData.target || qrData.target_asset,
+                threat_type: qrData.type || qrData.threat_type || 'Ransomware Outbreak',
+                attacker_source: qrData.source || qrData.attacker_source || '185.220.101.45 (Tor Ingress)',
+                sector: qrData.sector || 'Financial Systems',
+                act_isolate_network: qrData.act_isolate_network !== false,
+                act_firewall_drop: qrData.act_firewall_drop !== false,
+                act_revoke_sso: qrData.act_revoke_sso !== false,
+                act_alert_commander: qrData.act_alert_commander !== false,
+                notes: qrData.details || qrData.notes || '',
+                cvss_score: qrData.cvss || qrData.cvss_score || 9.8,
+                mitre_technique: qrData.mitre || qrData.mitre_technique || 'T1486 / Data Encrypted for Impact',
+                status: qrData.status || 'CONTAINED',
+                dispatched_by: user ? (user.callsign || user.email) : 'Commander Yash K. (SOC Lead)',
+                dispatched_by_id: user && user.id && !user.id.startsWith('demo-') && !user.id.startsWith('admin-') ? user.id : null
+            };
+
+            const { data, error } = await client.from('quick_responses').insert([payload]).select();
+            if (error) throw error;
+
+            return { success: true, data: data, message: 'Emergency response recorded in Supabase cloud database.' };
+        } catch (err) {
+            console.warn('[Supabase QR] Failed to store quick response in cloud:', err.message);
+            return { success: false, message: err.message };
+        }
+    }
+
     // ═══════════════════════════════════════════════════════════
     // SUPABASE AUTHENTICATION ENGINE
     // ═══════════════════════════════════════════════════════════
@@ -468,6 +504,7 @@
         syncLocalThreatsToCloud,
         fetchThreatsFromCloud,
         saveEvidenceChain,
+        dispatchQuickResponseToCloud,
         signIn,
         signUp,
         signInWithOAuth,

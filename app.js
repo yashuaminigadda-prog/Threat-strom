@@ -3960,6 +3960,17 @@ echo "[+] Host isolated. Containment applied."`,
 
                 alerts.unshift(newAlert);
 
+                // Asynchronously save to Supabase Cloud if connected
+                if (window.ThreatStormSupabase && typeof window.ThreatStormSupabase.dispatchQuickResponseToCloud === 'function') {
+                    window.ThreatStormSupabase.dispatchQuickResponseToCloud({
+                        ...newAlert,
+                        act_isolate_network: document.getElementById('qr-act-isolate')?.checked !== false,
+                        act_firewall_drop: document.getElementById('qr-act-firewall')?.checked !== false,
+                        act_revoke_sso: document.getElementById('qr-act-revoke')?.checked !== false,
+                        act_alert_commander: document.getElementById('qr-act-alert-team')?.checked !== false
+                    }).catch(err => console.warn('[Supabase QR Sync]', err));
+                }
+
                 // Update UI tables and feed if open
                 if (typeof renderFullAlertsTable === 'function') renderFullAlertsTable();
                 if (typeof renderFeedView === 'function') renderFeedView();
